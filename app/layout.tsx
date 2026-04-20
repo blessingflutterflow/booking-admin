@@ -38,7 +38,7 @@ export default function RootLayout({
           crossOrigin=""
         />
       </head>
-      <body className="min-h-full flex flex-col bg-gray-50 dark:bg-gray-900">
+      <body className="min-h-full flex flex-col" style={{ background: '#f8fafc' }}>
         <AuthProvider>
           <ProtectedRoute>{children}</ProtectedRoute>
         </AuthProvider>

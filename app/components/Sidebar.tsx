@@ -38,34 +38,28 @@ export function Sidebar() {
 
   return (
     <div 
-      className="flex flex-col h-full w-64 border-r"
+      className="flex flex-col h-full w-[280px] border-r flex-shrink-0"
       style={{ 
-        background: 'var(--white)',
-        borderColor: 'var(--border-color)'
+        background: '#ffffff',
+        borderColor: '#e0e2e6'
       }}
     >
       {/* Logo */}
       <div 
         className="flex items-center gap-3 px-6 py-5 border-b"
-        style={{ borderColor: 'var(--border-color)' }}
+        style={{ borderColor: '#e0e2e6' }}
       >
         <div 
           className="w-10 h-10 rounded-xl flex items-center justify-center"
-          style={{ background: 'var(--airtable-blue)' }}
+          style={{ background: '#1b61c9' }}
         >
           <span className="text-white font-bold text-xl">B</span>
         </div>
         <div>
-          <h1 
-            className="font-bold"
-            style={{ color: 'var(--deep-navy)' }}
-          >
+          <h1 className="font-bold text-[#181d26]">
             Boo Bookings
           </h1>
-          <p 
-            className="text-xs"
-            style={{ color: 'var(--text-weak)' }}
-          >
+          <p className="text-xs text-[rgba(4,14,32,0.69)]">
             Admin Panel
           </p>
         </div>
@@ -84,8 +78,8 @@ export function Sidebar() {
                 isActive && 'active'
               )}
             >
-              <item.icon className="w-5 h-5 ph-icon" weight={isActive ? 'fill' : 'regular'} />
-              {item.name}
+              <item.icon className="w-5 h-5 flex-shrink-0" weight={isActive ? 'fill' : 'regular'} />
+              <span className="whitespace-nowrap">{item.name}</span>
             </Link>
           );
         })}
@@ -94,22 +88,20 @@ export function Sidebar() {
       {/* Bottom */}
       <div 
         className="p-4 border-t space-y-1"
-        style={{ borderColor: 'var(--border-color)' }}
+        style={{ borderColor: '#e0e2e6' }}
       >
         <button 
-          className="sidebar-link w-full text-left"
-          style={{ color: 'var(--text-weak)' }}
+          className="sidebar-link w-full text-left text-[rgba(4,14,32,0.69)]"
         >
-          <Gear className="w-5 h-5 ph-icon" />
-          Settings
+          <Gear className="w-5 h-5 flex-shrink-0" />
+          <span className="whitespace-nowrap">Settings</span>
         </button>
         <button
           onClick={handleLogout}
-          className="sidebar-link w-full text-left"
-          style={{ color: '#dc2626' }}
+          className="sidebar-link w-full text-left text-red-600"
         >
-          <SignOut className="w-5 h-5 ph-icon" />
-          Sign Out
+          <SignOut className="w-5 h-5 flex-shrink-0" />
+          <span className="whitespace-nowrap">Sign Out</span>
         </button>
       </div>
     </div>
