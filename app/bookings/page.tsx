@@ -6,26 +6,26 @@ import { db } from '@/lib/firebase';
 import { Booking, BookingStatus } from '@/types';
 import { Sidebar } from '../components/Sidebar';
 import { 
-  Calendar, 
-  Search, 
-  Filter,
+  CalendarBlank, 
+  MagnifyingGlass, 
+  Faders,
   CheckCircle,
   XCircle,
   Clock,
-  LogOut,
-  DollarSign,
+  SignOut,
+  CurrencyDollar,
   User,
   MapPin,
   Eye,
   X
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import { formatDate, formatDateTime, formatCurrency } from '@/lib/utils';
 
 const statusConfig: Record<BookingStatus, { color: string; bg: string; icon: any; label: string }> = {
   pending: { color: 'text-amber-700', bg: 'bg-amber-100', icon: Clock, label: 'Pending' },
   confirmed: { color: 'text-green-700', bg: 'bg-green-100', icon: CheckCircle, label: 'Confirmed' },
   cancelled: { color: 'text-red-700', bg: 'bg-red-100', icon: XCircle, label: 'Cancelled' },
-  checkedOut: { color: 'text-blue-700', bg: 'bg-blue-100', icon: LogOut, label: 'Checked Out' },
+  checkedOut: { color: 'text-blue-700', bg: 'bg-blue-100', icon: SignOut, label: 'Checked Out' },
   expired: { color: 'text-gray-700', bg: 'bg-gray-100', icon: Clock, label: 'Expired' },
 };
 
@@ -107,7 +107,7 @@ export default function BookingsPage() {
           {/* Filters */}
           <div className="flex items-center gap-4 mt-4">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search by guest, property, or ID..."
@@ -139,7 +139,7 @@ export default function BookingsPage() {
             </div>
           ) : filteredBookings.length === 0 ? (
             <div className="text-center py-12">
-              <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+              <CalendarBlank className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 dark:text-white">No bookings found</h3>
             </div>
           ) : (
@@ -183,7 +183,7 @@ export default function BookingsPage() {
                         </td>
                         <td className="px-4 py-4">
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-gray-400" />
+                            <CalendarBlank className="w-4 h-4 text-gray-400" />
                             <span className="text-sm text-gray-900 dark:text-white">
                               {formatDate(booking.checkIn)} - {formatDate(booking.checkOut)}
                             </span>

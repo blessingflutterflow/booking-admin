@@ -7,16 +7,16 @@ import { Accommodation } from '@/types';
 import { Sidebar } from '../components/Sidebar';
 import { 
   Tag, 
-  Search, 
+  MagnifyingGlass, 
   Percent,
   Star,
-  TrendingUp,
-  Calendar,
+  TrendUp,
+  CalendarBlank,
   ArrowUpRight,
   X,
-  Edit3,
+  PencilSimple,
   CheckCircle
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import { formatCurrency, formatDate } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -114,7 +114,7 @@ export default function PromotionsPage() {
             </div>
             <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-4 text-white">
               <div className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5" />
+                <TrendUp className="w-5 h-5" />
                 <span className="text-sm font-medium">Est. Savings</span>
               </div>
               <p className="text-3xl font-bold mt-2">{formatCurrency(stats.totalSavings)}</p>
@@ -123,7 +123,7 @@ export default function PromotionsPage() {
 
           {/* Search */}
           <div className="relative max-w-md mt-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
               placeholder="Search properties..."
@@ -351,13 +351,13 @@ function PropertyCard({
             onClick={onEdit}
             className="p-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
           >
-            <Edit3 className="w-4 h-4" />
+            <PencilSimple className="w-4 h-4" />
           </button>
         </div>
 
         {hasActiveDiscount && property.discountValidUntil && (
           <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
-            <Calendar className="w-3 h-3" />
+            <CalendarBlank className="w-3 h-3" />
             Valid until {formatDate(property.discountValidUntil)}
           </p>
         )}

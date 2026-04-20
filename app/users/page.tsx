@@ -7,19 +7,19 @@ import { User as UserType } from '@/types';
 import { Sidebar } from '../components/Sidebar';
 import { 
   Users as UsersIcon, 
-  Search, 
-  Filter,
+  MagnifyingGlass, 
+  Faders,
   User,
   Star,
-  Calendar,
+  CalendarBlank,
   Shield,
-  Home,
-  Mail,
+  House,
+  Envelope,
   Phone,
-  MoreHorizontal,
-  ChevronDown,
+  DotsThree,
+  CaretDown,
   Crown
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import { formatDate } from '@/lib/utils';
 
 export default function UsersPage() {
@@ -107,7 +107,7 @@ export default function UsersPage() {
           {/* Filters */}
           <div className="flex items-center gap-4 mt-4">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search by name, email, or phone..."
@@ -171,7 +171,7 @@ export default function UsersPage() {
                   </div>
                   <div className="mt-3 space-y-1 text-sm">
                     <p className="text-gray-600 dark:text-gray-300 flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-gray-400" />
+                      <Envelope className="w-4 h-4 text-gray-400" />
                       <span className="truncate">{user.email || 'No email'}</span>
                     </p>
                     {user.phone && (
@@ -181,7 +181,7 @@ export default function UsersPage() {
                       </p>
                     )}
                     <p className="text-gray-500 text-xs flex items-center gap-2">
-                      <Calendar className="w-3 h-3" />
+                      <CalendarBlank className="w-3 h-3" />
                       Joined {formatDate(user.createdAt)}
                     </p>
                   </div>
@@ -232,7 +232,7 @@ export default function UsersPage() {
                       }`}
                     >
                       {role === 'admin' && <Crown className="w-4 h-4 inline mr-1" />}
-                      {role === 'host' && <Home className="w-4 h-4 inline mr-1" />}
+                      {role === 'host' && <House className="w-4 h-4 inline mr-1" />}
                       {role === 'guest' && <User className="w-4 h-4 inline mr-1" />}
                       {role}
                     </button>

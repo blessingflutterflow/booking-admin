@@ -7,19 +7,19 @@ import { Accommodation } from '@/types';
 import { Sidebar } from '../components/Sidebar';
 import { MapWrapper } from '../components/MapWrapper';
 import { 
-  Search, 
+  MagnifyingGlass, 
   Plus, 
-  Edit2, 
-  Trash2, 
+  PencilSimple, 
+  Trash, 
   MapPin, 
   Star,
-  Filter,
-  Grid,
+  Faders,
+  SquaresFour,
   List,
   Eye,
-  MoreVertical,
-  Building2
-} from 'lucide-react';
+  DotsThreeVertical,
+  Buildings
+} from '@phosphor-icons/react';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/utils';
 
@@ -109,7 +109,7 @@ export default function PropertiesPage() {
           {/* Filters */}
           <div className="flex items-center gap-4 mt-4">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search properties..."
@@ -134,7 +134,7 @@ export default function PropertiesPage() {
                 onClick={() => setViewMode('grid')}
                 className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white dark:bg-gray-600 shadow-sm' : ''}`}
               >
-                <Grid className="w-4 h-4" />
+                <SquaresFour className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
@@ -166,7 +166,7 @@ export default function PropertiesPage() {
             </div>
           ) : filteredProperties.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <Building2 className="w-16 h-16 text-gray-300 mb-4" />
+              <Buildings className="w-16 h-16 text-gray-300 mb-4" />
               <h3 className="text-lg font-medium text-gray-900 dark:text-white">No properties found</h3>
               <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filters</p>
             </div>
@@ -296,14 +296,14 @@ function PropertyCard({
             href={`/properties/${property.id}/edit`}
             className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200"
           >
-            <Edit2 className="w-4 h-4" />
+            <PencilSimple className="w-4 h-4" />
             Edit
           </Link>
           <button
             onClick={() => onDelete(property.id)}
             className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
           >
-            <Trash2 className="w-4 h-4" />
+            <Trash className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -397,13 +397,13 @@ function PropertyRow({
           href={`/properties/${property.id}/edit`}
           className="p-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
         >
-          <Edit2 className="w-4 h-4" />
+          <PencilSimple className="w-4 h-4" />
         </Link>
         <button
           onClick={() => onDelete(property.id)}
           className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
         >
-          <Trash2 className="w-4 h-4" />
+          <Trash className="w-4 h-4" />
         </button>
       </div>
     </div>

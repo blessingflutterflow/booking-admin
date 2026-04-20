@@ -3,23 +3,23 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  LayoutDashboard,
-  Map,
-  Building2,
-  Calendar,
+  SquaresFour,
+  MapTrifold,
+  Buildings,
+  CalendarBlank,
   Users,
   Tag,
-  Settings,
-  LogOut,
-} from 'lucide-react';
+  Gear,
+  SignOut,
+} from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 import { useAuth } from './AuthContext';
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { name: 'Map View', href: '/map', icon: Map },
-  { name: 'Properties', href: '/properties', icon: Building2 },
-  { name: 'Bookings', href: '/bookings', icon: Calendar },
+  { name: 'Dashboard', href: '/', icon: SquaresFour },
+  { name: 'Map View', href: '/map', icon: MapTrifold },
+  { name: 'Properties', href: '/properties', icon: Buildings },
+  { name: 'Bookings', href: '/bookings', icon: CalendarBlank },
   { name: 'Users', href: '/users', icon: Users },
   { name: 'Promotions', href: '/promotions', icon: Tag },
 ];
@@ -37,15 +37,37 @@ export function Sidebar() {
   };
 
   return (
-    <div className="flex flex-col h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
+    <div 
+      className="flex flex-col h-full w-64 border-r"
+      style={{ 
+        background: 'var(--white)',
+        borderColor: 'var(--border-color)'
+      }}
+    >
       {/* Logo */}
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-200 dark:border-gray-700">
-        <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+      <div 
+        className="flex items-center gap-3 px-6 py-5 border-b"
+        style={{ borderColor: 'var(--border-color)' }}
+      >
+        <div 
+          className="w-10 h-10 rounded-xl flex items-center justify-center"
+          style={{ background: 'var(--airtable-blue)' }}
+        >
           <span className="text-white font-bold text-xl">B</span>
         </div>
         <div>
-          <h1 className="font-bold text-gray-900 dark:text-white">Boo Bookings</h1>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Admin Panel</p>
+          <h1 
+            className="font-bold"
+            style={{ color: 'var(--deep-navy)' }}
+          >
+            Boo Bookings
+          </h1>
+          <p 
+            className="text-xs"
+            style={{ color: 'var(--text-weak)' }}
+          >
+            Admin Panel
+          </p>
         </div>
       </div>
 
@@ -58,13 +80,11 @@ export function Sidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors',
-                isActive
-                  ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                'sidebar-link',
+                isActive && 'active'
               )}
             >
-              <item.icon className="w-5 h-5" />
+              <item.icon className="w-5 h-5 ph-icon" weight={isActive ? 'fill' : 'regular'} />
               {item.name}
             </Link>
           );
@@ -72,16 +92,23 @@ export function Sidebar() {
       </nav>
 
       {/* Bottom */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-1">
-        <button className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 w-full">
-          <Settings className="w-5 h-5" />
+      <div 
+        className="p-4 border-t space-y-1"
+        style={{ borderColor: 'var(--border-color)' }}
+      >
+        <button 
+          className="sidebar-link w-full text-left"
+          style={{ color: 'var(--text-weak)' }}
+        >
+          <Gear className="w-5 h-5 ph-icon" />
           Settings
         </button>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 w-full"
+          className="sidebar-link w-full text-left"
+          style={{ color: '#dc2626' }}
         >
-          <LogOut className="w-5 h-5" />
+          <SignOut className="w-5 h-5 ph-icon" />
           Sign Out
         </button>
       </div>
