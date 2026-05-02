@@ -53,7 +53,7 @@ export default function UsersPage() {
       ...doc.data(),
       checkIn: doc.data().checkIn?.toDate(),
       checkOut: doc.data().checkOut?.toDate(),
-    }));
+    })) as Booking[];
     setUserBookings(bookings);
   };
 
