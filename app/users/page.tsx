@@ -3,21 +3,16 @@
 import { useEffect, useState } from 'react';
 import { collection, onSnapshot, doc, updateDoc, query, orderBy, getDocs, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { User as UserType } from '@/types';
+import { User as UserType, Booking } from '@/types';
 import { Sidebar } from '../components/Sidebar';
 import { 
   Users as UsersIcon, 
   MagnifyingGlass, 
-  Faders,
   User,
-  Star,
   CalendarBlank,
-  Shield,
   House,
   Envelope,
   Phone,
-  DotsThree,
-  CaretDown,
   Crown
 } from '@phosphor-icons/react';
 import { formatDate } from '@/lib/utils';
@@ -28,7 +23,7 @@ export default function UsersPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState<'all' | 'guest' | 'host' | 'admin'>('all');
   const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
-  const [userBookings, setUserBookings] = useState<any[]>([]);
+  const [userBookings, setUserBookings] = useState<Booking[]>([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -118,7 +113,7 @@ export default function UsersPage() {
             </div>
             <select
               value={roleFilter}
-              onChange={(e) => setRoleFilter(e.target.value as any)}
+              onChange={(e) => setRoleFilter(e.target.value as UserType['role'] | 'all')}
               className="px-4 py-2 bg-gray-100 dark:bg-gray-700 border-0 rounded-lg"
             >
               <option value="all">All Roles</option>

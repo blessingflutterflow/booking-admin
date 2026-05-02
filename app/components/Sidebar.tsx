@@ -11,6 +11,8 @@ import {
   Tag,
   Gear,
   SignOut,
+  Storefront,
+  ClipboardText,
 } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 import { useAuth } from './AuthContext';
@@ -21,6 +23,8 @@ const navigation = [
   { name: 'Properties', href: '/properties', icon: Buildings },
   { name: 'Bookings', href: '/bookings', icon: CalendarBlank },
   { name: 'Users', href: '/users', icon: Users },
+  { name: 'Vendors', href: '/vendors', icon: Storefront },
+  { name: 'Approvals', href: '/approvals', icon: ClipboardText },
   { name: 'Promotions', href: '/promotions', icon: Tag },
 ];
 

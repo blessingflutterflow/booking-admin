@@ -15,16 +15,12 @@ import {
   Users,
   House,
   Clock,
-  Tag,
   Star,
   Hoodie,
-  CurrencyDollar,
   Sun,
   Moon,
-  CalendarBlank,
   Champagne,
   CheckCircle,
-  PersonSimpleRun,
   Gear
 } from '@phosphor-icons/react';
 import Link from 'next/link';
@@ -111,7 +107,7 @@ export default function NewPropertyPage() {
         roomTypes,
         price: defaultPrice,
         totalRooms,
-        guests: Math.max(...roomTypes.map(rt => 2)), // Estimate
+        guests: Math.max(...roomTypes.map(() => 2)), // Estimate
         bedrooms: totalRooms,
         beds: totalRooms,
         bathrooms: totalRooms,

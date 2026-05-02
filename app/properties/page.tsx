@@ -13,11 +13,9 @@ import {
   Trash, 
   MapPin, 
   Star,
-  Faders,
   SquaresFour,
   List,
   Eye,
-  DotsThreeVertical,
   Buildings
 } from '@phosphor-icons/react';
 import Link from 'next/link';

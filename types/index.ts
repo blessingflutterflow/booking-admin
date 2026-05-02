@@ -91,6 +91,8 @@ export interface Accommodation {
   isFullyBooked: boolean;
   nextAvailableDate?: Date | null;
   bookedDates: string[];
+  isSuspended?: boolean;
+  isApproved?: boolean;
 }
 
 export type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'checkedOut' | 'expired';
@@ -130,6 +132,8 @@ export interface Booking {
   endTime?: string | null;        // "16:00" - calculated
   eventPackageName?: string | null; // For event bookings
   paymentMethod: PaymentMethod;
+  paymentStatus: 'pendingPayment' | 'proofSubmitted' | 'paymentConfirmed';
+  paymentProofUrl?: string | null;
   arrivalDeadline?: Date | null;
   isArrived: boolean;
   checkedOutAt?: Date | null;
@@ -146,6 +150,7 @@ export interface User {
   role: 'guest' | 'host' | 'admin';
   createdAt: Date | null;
   isHost: boolean;
+  isSuspended?: boolean;
 }
 
 export interface DashboardStats {

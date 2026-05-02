@@ -19,9 +19,7 @@ import {
   Home,
   DollarSign,
   Check,
-  X,
   Tag,
-  Clock,
   Wifi,
   Car,
   Coffee,
@@ -33,7 +31,7 @@ import {
 import Link from 'next/link';
 import { formatCurrency, formatDate } from '@/lib/utils';
 
-const amenityIcons: Record<string, any> = {
+const amenityIcons: Record<string, React.ComponentType<any>> = {
   'wifi': Wifi,
   'parking': Car,
   'kitchen': Utensils,

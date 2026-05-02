@@ -8,24 +8,29 @@ import { Accommodation } from '@/types';
 import { Sidebar } from '../../../components/Sidebar';
 import { 
   ArrowLeft, 
-  Save, 
+  FloppyDisk, 
   Plus,
   X,
-  Upload,
   MapPin,
-  DollarSign,
   Users,
   Bed,
-  Bath,
   Clock,
   Tag,
   Star,
-  Home
-} from 'lucide-react';
+  House,
+  Hoodie,
+  CurrencyDollar,
+  Sun,
+  Moon,
+  Champagne,
+  Plus as Upload
+} from '@phosphor-icons/react';
+import { RoomType } from '@/types';
 import Link from 'next/link';
 
 const categories = ['Guesthouse', 'Apartment', 'House', 'Villa', 'Hotel', 'B&B', 'Hostel', 'Cottage'];
 const commonAmenities = ['WiFi', 'Parking', 'Kitchen', 'Pool', 'AC', 'Fan', 'Breakfast', 'TV', 'Washer', 'Dryer', 'Gym', 'Spa'];
+const roomAmenities = ['Queen Bed', 'King Bed', 'Twin Beds', 'TV', 'Bar Fridge', 'Microwave', 'Fan', 'AC', 'Private Bathroom', 'Couch', 'Desk', 'Safe', 'WiFi', 'Bath Tub', 'Shower'];
 
 export default function PropertyEditPage() {
   const { id } = useParams();
@@ -35,6 +40,9 @@ export default function PropertyEditPage() {
   const [formData, setFormData] = useState<Partial<Accommodation>>({});
   const [newAmenity, setNewAmenity] = useState('');
   const [newImageUrl, setNewImageUrl] = useState('');
+  const [activeTab, setActiveTab] = useState<'details' | 'rooms'>('details');
+  const [editingRoom, setEditingRoom] = useState<RoomType | null>(null);
+  const [showRoomModal, setShowRoomModal] = useState(false);
 
   useEffect(() => {
     const loadProperty = async () => {
@@ -163,7 +171,7 @@ export default function PropertyEditPage() {
               disabled={saving}
               className="flex items-center gap-2 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50"
             >
-              <Save className="w-4 h-4" />
+              <FloppyDisk className="w-4 h-4" />
               {saving ? 'Saving...' : 'Save Changes'}
             </button>
           </div>
@@ -173,7 +181,7 @@ export default function PropertyEditPage() {
           {/* Basic Info */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <Home className="w-5 h-5 text-indigo-600" />
+              <House className="w-5 h-5 text-indigo-600" />
               Basic Information
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -233,7 +241,7 @@ export default function PropertyEditPage() {
           {/* Pricing */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-green-600" />
+              <CurrencyDollar className="w-5 h-5 text-green-600" />
               Pricing & Payment
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

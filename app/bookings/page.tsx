@@ -58,6 +58,16 @@ export default function BookingsPage() {
     return () => unsubscribe();
   }, []);
 
+  const confirmPayment = async (bookingId: string) => {
+    try {
+      await updateDoc(doc(db, 'bookings', bookingId), {
+        paymentStatus: 'paymentConfirmed',
+      });
+    } catch (error) {
+      alert('Failed to confirm payment: ' + error);
+    }
+  };
+
   const updateStatus = async (bookingId: string, status: BookingStatus) => {
     try {
       await updateDoc(doc(db, 'bookings', bookingId), {
@@ -192,7 +202,15 @@ export default function BookingsPage() {
                         </td>
                         <td className="px-4 py-4">
                           <p className="font-medium text-gray-900 dark:text-white">{formatCurrency(booking.total)}</p>
-                          <p className="text-xs text-gray-500">{booking.paymentMethod === 'payOnSite' ? 'Pay on site' : 'Online payment'}</p>
+                          <p className="text-xs text-gray-500">
+                            {booking.paymentMethod === 'payOnSite' ? 'Pay on site' : 'Bank Transfer'}
+                            {booking.paymentStatus === 'proofSubmitted' && (
+                              <span className="ml-1 text-amber-600 font-medium">· Proof submitted</span>
+                            )}
+                            {booking.paymentStatus === 'paymentConfirmed' && (
+                              <span className="ml-1 text-green-600 font-medium">· Payment confirmed</span>
+                            )}
+                          </p>
                         </td>
                         <td className="px-4 py-4">
                           <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${status.bg} ${status.color}`}>
@@ -202,6 +220,15 @@ export default function BookingsPage() {
                         </td>
                         <td className="px-4 py-4 text-right">
                           <div className="flex items-center justify-end gap-2">
+                            {/* Confirm Payment for bank transfer bookings with proof submitted */}
+                            {booking.paymentMethod !== 'payOnSite' && booking.paymentStatus === 'proofSubmitted' && (
+                              <button
+                                onClick={() => confirmPayment(booking.id)}
+                                className="px-3 py-1 bg-purple-600 text-white text-xs rounded-lg hover:bg-purple-700"
+                              >
+                                Confirm Payment
+                              </button>
+                            )}
                             {booking.status === 'pending' && (
                               <>
                                 <button
