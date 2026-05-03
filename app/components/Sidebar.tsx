@@ -94,12 +94,16 @@ export function Sidebar() {
         className="p-4 border-t space-y-1"
         style={{ borderColor: '#e0e2e6' }}
       >
-        <button 
-          className="sidebar-link w-full text-left text-[rgba(4,14,32,0.69)]"
+        <Link 
+          href="/settings"
+          className={cn(
+            'sidebar-link w-full text-[rgba(4,14,32,0.69)]',
+            pathname === '/settings' && 'active'
+          )}
         >
-          <Gear className="w-5 h-5 flex-shrink-0" />
+          <Gear className="w-5 h-5 flex-shrink-0" weight={pathname === '/settings' ? 'fill' : 'regular'} />
           <span className="whitespace-nowrap">Settings</span>
-        </button>
+        </Link>
         <button
           onClick={handleLogout}
           className="sidebar-link w-full text-left text-red-600"
